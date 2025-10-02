@@ -22,21 +22,18 @@ public class movement : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update() {
+     void Update() {
         horizontal = Input.GetAxisRaw("Horizontal");
 
         if (Input.GetKey(KeyCode.Space) && IsGrounded()) {
-            body.linearVelocity = new Vector2(horizontal * speed, jumpingPower);
-        }
-
-        if (!Input.GetKey(KeyCode.Space) && IsGrounded()) {
-            body.linearVelocity = new Vector2(0, 0);
+            body.linearVelocity = new Vector2(body.linearVelocity.x, jumpingPower);
         }
         Flip();
     }
-    // private void FixedUpdate() {
-    //     body.linearVelocity = new Vector2(horizontal * speed, body.linearVelocity.y);
-    // }
+    
+    private void FixedUpdate() {
+        body.linearVelocity = new Vector2(horizontal * speed, body.linearVelocity.y);
+    }
 
     private bool IsGrounded() {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
