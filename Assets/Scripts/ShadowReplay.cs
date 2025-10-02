@@ -38,15 +38,15 @@ class ShadowReplayer : MonoBehaviour
 
     void Update()
     {
-        float elapsed = Time.time - startTime;
+        // float elapsed = Time.time - startTime;
 
-        // Find the recorded frame that matches current time
-        InputFrame frame = FindFrameForTime(elapsed);
+        // // Find the recorded frame that matches current time
+        // InputFrame frame = FindFrameForTime(elapsed);
 
-        // Send inputs into a PlayerController but in AI mode
-        controller.Move(frame.horizontal);
-        if (frame.jump) controller.Jump();
-        if (frame.attack) controller.Attack();
+        // // Send inputs into a PlayerController but in AI mode
+        // controller.Move(frame.horizontal);
+        // if (frame.jump) controller.Jump();
+        // if (frame.attack) controller.Attack();
     }
 }
 
