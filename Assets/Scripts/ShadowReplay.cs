@@ -49,4 +49,3 @@ class ShadowReplayer : MonoBehaviour
         // if (frame.attack) controller.Attack();
     }
 }
-
