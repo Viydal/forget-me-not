@@ -8,7 +8,7 @@ public class movement : MonoBehaviour {
 
     private float horizontal;
     private float speed = 10f;
-    private float jumpingPower = 10f;
+    private float jumpingPower = 30f;
     private bool isFacingRight = true;
 
     [SerializeField] private Rigidbody2D body;
@@ -18,7 +18,7 @@ public class movement : MonoBehaviour {
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
-        body.gravityScale = 4f;
+        body.gravityScale = 6f;
     }
 
     // Update is called once per frame
@@ -26,13 +26,17 @@ public class movement : MonoBehaviour {
         horizontal = Input.GetAxisRaw("Horizontal");
 
         if (Input.GetKey(KeyCode.Space) && IsGrounded()) {
-            body.linearVelocity = new Vector2(body.linearVelocity.x, jumpingPower);
+            body.linearVelocity = new Vector2(horizontal * speed, jumpingPower);
+        }
+
+        if (!Input.GetKey(KeyCode.Space) && IsGrounded()) {
+            body.linearVelocity = new Vector2(0, 0);
         }
         Flip();
     }
-    private void FixedUpdate() {
-        body.linearVelocity = new Vector2(horizontal * speed, body.linearVelocity.y);
-    }
+    // private void FixedUpdate() {
+    //     body.linearVelocity = new Vector2(horizontal * speed, body.linearVelocity.y);
+    // }
 
     private bool IsGrounded() {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
