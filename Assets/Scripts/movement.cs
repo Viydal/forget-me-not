@@ -26,7 +26,6 @@ public class movement : MonoBehaviour {
         horizontal = Input.GetAxisRaw("Horizontal");
 
         if (Input.GetKey(KeyCode.Space) && IsGrounded()) {
-            Debug.Log("JUMP");
             body.linearVelocity = new Vector2(body.linearVelocity.x, jumpingPower);
         }
         Flip();
