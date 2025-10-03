@@ -1,44 +1,69 @@
-//// using System.Collections.Generic;
-//using UnityEngine;
+using System.Collections.Generic;
+using UnityEngine;
 
-//class InputFrame
-//{
-//    public float time;
-//    public float horizontal;
-//    public bool jump;
-//    public bool attack;
-//}
+class Frame {
+    public float time;
+    public bool isFacingRight;
+    public bool jump;
 
-//class PlayerRecorder : MonoBehaviour
-//{
-//    List<InputFrame> currentRecording;
-//    bool isRecording = false;
-//    float startTime;
+    public bool isJumping;
+    public bool isRunning;
 
-//    void StartRecording()
-//    {
-//        currentRecording = new List<InputFrame>();
-//        isRecording = true;
-//        startTime = Time.time;
-//    }
+    public Vector2 position;
+}
 
-//    void Update()
-//    {
-//        if (!isRecording) return;
+class PlayerRecorder : MonoBehaviour {
+    private float timer;
+    public float recordInterval = 0.01f;
 
-//        // Capture inputs each frame
-//        InputFrame frame = new InputFrame();
-//        frame.time = Time.time - startTime;
-//        frame.horizontal = Input.GetAxisRaw("Horizontal");
-//        frame.jump = Input.GetButtonDown("Jump");
-//        frame.attack = Input.GetButtonDown("Fire1");
+    private List<Frame> frames = new List<Frame>();
 
-//        currentRecording.Add(frame);
-//    }
+    private Movement movement;
 
-//    List<InputFrame> StopRecording()
-//    {
-//        isRecording = false;
-//        return currentRecording;
-//    }
-//}
+    public bool isRecording = false;
+
+    void Start() {
+        movement = GetComponent<Movement>();
+    }
+
+    void Update() {
+
+        // Start Recording with R
+        if (Input.GetKeyDown(KeyCode.R)) {
+            frames.Clear();
+            timer = 0f;
+            isRecording = true;
+            Debug.Log("Recording started");
+        }
+
+        // Stop recording with T
+        if (Input.GetKeyDown(KeyCode.T)) {
+            isRecording = false;
+            Debug.Log("Recording stopped");
+        }
+
+        if (!isRecording) return;
+
+        // Capture inputs each frame
+        timer += Time.deltaTime;
+        if (timer >= recordInterval) {
+            timer = 0f;
+
+            Frame frame = new Frame();
+            frame.isFacingRight = movement.isFacingRight;
+            frame.time = Time.time;
+            frame.jump = Input.GetKey(KeyCode.Space) && movement.IsGrounded();
+
+            frame.isJumping = movement.isJumping;
+            frame.isRunning = movement.isRunning;
+
+            frame.position = transform.position;
+
+            frames.Add(frame);
+        }
+    }
+
+    public List<Frame> GetFrames() {
+        return frames;
+    }
+}

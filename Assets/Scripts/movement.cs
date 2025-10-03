@@ -4,12 +4,15 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class movement : MonoBehaviour {
+public class Movement : MonoBehaviour {
 
     private float horizontal;
     private float speed = 10f;
     private float jumpingPower = 30f;
-    private bool isFacingRight = true;
+    public bool isFacingRight = true;
+
+    public bool isJumping = false;
+    public bool isRunning = false;
 
     [SerializeField] private Rigidbody2D body;
     [SerializeField] private Transform groundCheck;
@@ -28,9 +31,11 @@ public class movement : MonoBehaviour {
         horizontal = Input.GetAxisRaw("Horizontal");
 
         if (horizontal != 0) {
-            animator.SetBool("isRunning", true);
+            isRunning = true;
+            animator.SetBool("isRunning", isRunning);
         } else {
-            animator.SetBool("isRunning", false);
+            isRunning = false;
+            animator.SetBool("isRunning", isRunning);
         }
 
         if (Input.GetKey(KeyCode.Space) && IsGrounded()) {
@@ -38,9 +43,11 @@ public class movement : MonoBehaviour {
         }
 
         if (IsGrounded()) {
-            animator.SetBool("isJumping", false);
+            isJumping = false;
+            animator.SetBool("isJumping", isJumping);
         } else {
-            animator.SetBool("isJumping", true);
+            isJumping = true;
+            animator.SetBool("isJumping", isJumping);
         }
         Flip();
     }
@@ -49,11 +56,11 @@ public class movement : MonoBehaviour {
         body.linearVelocity = new Vector2(horizontal * speed, body.linearVelocity.y);
     }
 
-    private bool IsGrounded() {
+    public bool IsGrounded() {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
 
-    private void Flip() {
+    public void Flip() {
         if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f) {
             isFacingRight = !isFacingRight;
             Vector3 localScale = transform.localScale;
