@@ -56,5 +56,8 @@ TagManager:
   - name: Foreground
     uniqueID: 2286845677
     locked: 0
+  - name: Canvas
+    uniqueID: 653693619
+    locked: 0
   m_RenderingLayers:
   - Default
