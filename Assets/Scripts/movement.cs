@@ -36,11 +36,11 @@ public class movement : MonoBehaviour {
         if (Input.GetKey(KeyCode.Space) && IsGrounded()) {
             body.linearVelocity = new Vector2(body.linearVelocity.x, jumpingPower);
         }
-        
-        if (body.linearVelocity.y > 0 || body.linearVelocity.y < 0) {
-            animator.SetBool("isJumping", true);
-        } else {
+
+        if (IsGrounded()) {
             animator.SetBool("isJumping", false);
+        } else {
+            animator.SetBool("isJumping", true);
         }
         Flip();
     }
