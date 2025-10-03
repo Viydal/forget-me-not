@@ -15,6 +15,8 @@ public class movement : MonoBehaviour {
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
 
+    [SerializeField] private Animator animator;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
@@ -25,8 +27,20 @@ public class movement : MonoBehaviour {
      void Update() {
         horizontal = Input.GetAxisRaw("Horizontal");
 
+        if (horizontal != 0) {
+            animator.SetBool("isRunning", true);
+        } else {
+            animator.SetBool("isRunning", false);
+        }
+
         if (Input.GetKey(KeyCode.Space) && IsGrounded()) {
             body.linearVelocity = new Vector2(body.linearVelocity.x, jumpingPower);
+        }
+        
+        if (body.linearVelocity.y > 0 || body.linearVelocity.y < 0) {
+            animator.SetBool("isJumping", true);
+        } else {
+            animator.SetBool("isJumping", false);
         }
         Flip();
     }
