@@ -10,12 +10,37 @@ public class ShadowReplay : MonoBehaviour {
     private float timer = 0f;
     private int currentIndex = 0;
 
+    public bool beginReplay = false;
+
     private List<Frame> frames;
+
+    void Start() {
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        Color colour = sr.color;
+        colour.a = 0.5f;
+        sr.color = colour;
+        gameObject.GetComponent<Renderer>().enabled = false;
+    }
+
+    public void BeginReplay(List<Frame> recordingFrames) {
+        if (record.recordings.Count == 0) {
+            gameObject.GetComponent<Renderer>().enabled = false;
+        } else {
+            gameObject.GetComponent<Renderer>().enabled = true;
+        }
+        frames = new List<Frame>(recordingFrames);
+        currentIndex = 0;
+        beginReplay = true;
+        Debug.Log(frames.Count);
+    }
 
     // Update is called once per frame
     void Update() {
-        if (record.isRecording) {
-            currentIndex = 0;
+
+        if (!beginReplay) return;
+
+        if (currentIndex >= frames.Count) {
+            beginReplay = false;
             return;
         }
 
@@ -40,7 +65,7 @@ public class ShadowReplay : MonoBehaviour {
             bool isFacingRight = frame.isFacingRight;
             Flip(body, isFacingRight);
 
-            body.position = frame.position;
+            body.MovePosition(frame.position);
 
             animator.SetBool("isRunning", frame.isRunning);
             animator.SetBool("isJumping", frame.isJumping);
@@ -48,8 +73,13 @@ public class ShadowReplay : MonoBehaviour {
             currentIndex++;
             timer = 0f;
         }
+
+        if (currentIndex >= frames.Count) {
+            animator.SetBool("isRunning", false);
+            animator.SetBool("isJumping", false);
+        }
     }
-    
+
     public void Flip(Rigidbody2D body, bool isFacingRight) {
         Vector3 localScale = body.transform.localScale;
         if (!isFacingRight) {

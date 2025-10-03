@@ -14,6 +14,12 @@ public class Movement : MonoBehaviour {
     public bool isJumping = false;
     public bool isRunning = false;
 
+    public Transform startTransform;
+
+    public Vector2 intitalPosition;
+
+    public bool isDead = false;
+
     [SerializeField] private Rigidbody2D body;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
@@ -24,6 +30,7 @@ public class Movement : MonoBehaviour {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
         body.gravityScale = 6f;
+        intitalPosition = startTransform.position;
     }
 
     // Update is called once per frame
@@ -49,6 +56,13 @@ public class Movement : MonoBehaviour {
             isJumping = true;
             animator.SetBool("isJumping", isJumping);
         }
+
+        if (isDead) {
+            body.position = intitalPosition;
+            body.linearVelocity = Vector2.zero;
+            isDead = !isDead;
+        }
+
         Flip();
     }
     

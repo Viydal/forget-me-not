@@ -2573,6 +2573,7 @@ MonoBehaviour:
   animator: {fileID: 442810068}
   body: {fileID: 442810070}
   record: {fileID: 533106267}
+  beginReplay: 0
 --- !u!95 &442810068
 Animator:
   serializedVersion: 7
@@ -2735,7 +2736,7 @@ Transform:
   m_GameObject: {fileID: 442810066}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.01, y: 1.2, z: 0}
+  m_LocalPosition: {x: -6.37, y: 0.96, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2758,7 +2759,7 @@ GameObject:
   - component: {fileID: 533106268}
   - component: {fileID: 533106267}
   m_Layer: 7
-  m_Name: Player (1)
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2776,6 +2777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19c8c134c3774564ba683f2d25fafc8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerRecorder
+  shadow: {fileID: 442810067}
   recordInterval: 0.02
   isRecording: 0
 --- !u!95 &533106268
@@ -2888,6 +2890,9 @@ MonoBehaviour:
   isFacingRight: 1
   isJumping: 0
   isRunning: 0
+  startTransform: {fileID: 533106273}
+  intitalPosition: {x: 0, y: 0}
+  isDead: 0
   body: {fileID: 533106270}
   groundCheck: {fileID: 189509152}
   groundLayer:
@@ -2961,7 +2966,7 @@ Transform:
   m_GameObject: {fileID: 533106266}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.69, y: 1.09, z: 0}
+  m_LocalPosition: {x: 2.03, y: 0.98, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
