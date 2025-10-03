@@ -1,7 +1,8 @@
 using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
 
-class Frame {
+public class Frame {
     public float time;
     public bool isFacingRight;
     public bool jump;
@@ -13,33 +14,45 @@ class Frame {
 }
 
 class PlayerRecorder : MonoBehaviour {
+
+    [SerializeField] private ShadowReplay shadow;
+
     private float timer;
     public float recordInterval = 0.01f;
 
-    private List<Frame> frames = new List<Frame>();
+    public List<List<Frame>> recordings = new List<List<Frame>>();
+    private List<Frame> currentRecording = new List<Frame>();
 
     private Movement movement;
 
-    public bool isRecording = false;
+    public bool isRecording = true;
 
     void Start() {
         movement = GetComponent<Movement>();
+        StartRecording();
+    }
+
+    public void StartRecording() {
+        currentRecording = new List<Frame>();
+        isRecording = true;
+        timer = 0f;
+        Debug.Log("Recording started");
+    }
+
+    public void StopRecording() {
+        recordings.Add(currentRecording);
+        isRecording = false;
+        movement.isDead = true;
+        Debug.Log("Recording stopped - player dead");
     }
 
     void Update() {
 
-        // Start Recording with R
+        // Stop recording with R
         if (Input.GetKeyDown(KeyCode.R)) {
-            frames.Clear();
-            timer = 0f;
-            isRecording = true;
-            Debug.Log("Recording started");
-        }
-
-        // Stop recording with T
-        if (Input.GetKeyDown(KeyCode.T)) {
-            isRecording = false;
-            Debug.Log("Recording stopped");
+            StopRecording();
+            shadow.BeginReplay(GetFrames());
+            StartRecording();
         }
 
         if (!isRecording) return;
@@ -59,11 +72,14 @@ class PlayerRecorder : MonoBehaviour {
 
             frame.position = transform.position;
 
-            frames.Add(frame);
+            currentRecording.Add(frame);
         }
     }
 
     public List<Frame> GetFrames() {
-        return frames;
+        if (recordings.Count == 0) {
+            return new List<Frame>();
+        }
+        return recordings[recordings.Count - 1];
     }
 }
