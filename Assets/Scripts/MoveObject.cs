@@ -1,7 +1,6 @@
 using UnityEngine;
 
-public class MoveObject : MonoBehaviour
-{
+public class MoveObject : MonoBehaviour {
     [Header("Movement Settings")]
     [SerializeField] private Vector3 moveOffset = new Vector3(0, 3f, 0); // How far to move from start
     [SerializeField] private float moveSpeed = 2f;                        // Movement speed
@@ -11,44 +10,39 @@ public class MoveObject : MonoBehaviour
     private Vector3 targetPosition;
     private bool isActive = false;
 
-    private void Start()
-    {
+    private Vector3 lastPosition;
+
+    private void Start() {
         startPosition = transform.position;
         targetPosition = startPosition + moveOffset;
 
         if (startOpen)
             transform.position = targetPosition;
+
+        lastPosition = transform.position;
     }
 
-    private void Update()
-    {
+    private void Update() {
         Vector3 desired = isActive ? targetPosition : startPosition;
         transform.position = Vector3.Lerp(transform.position, desired, Time.deltaTime * moveSpeed);
     }
 
-    public void Activate()
-    {
+    private void LateUpdate() {
+        lastPosition = transform.position;
+    }
+
+    public void Activate() {
         isActive = true;
     }
 
-    public void Deactivate()
-    {
+    public void Deactivate() {
         isActive = false;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            collision.gameObject.transform.parent = transform;
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            collision.gameObject.transform.parent = null;
+    private void OnCollisionStay2D(Collision2D collision) {
+        if (collision.gameObject.CompareTag("Player")) {
+            Vector3 movementDelta = transform.position - lastPosition;
+            collision.transform.position += movementDelta;
         }
     }
 }

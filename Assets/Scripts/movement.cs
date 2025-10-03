@@ -34,7 +34,7 @@ public class Movement : MonoBehaviour {
     }
 
     // Update is called once per frame
-     void Update() {
+    void Update() {
         horizontal = Input.GetAxisRaw("Horizontal");
 
         if (horizontal != 0) {
@@ -65,7 +65,7 @@ public class Movement : MonoBehaviour {
 
         Flip();
     }
-    
+
     private void FixedUpdate() {
         body.linearVelocity = new Vector2(horizontal * speed, body.linearVelocity.y);
     }

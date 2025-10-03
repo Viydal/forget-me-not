@@ -15,6 +15,7 @@ public class ShadowReplay : MonoBehaviour {
     private List<Frame> frames;
 
     void Start() {
+        body.bodyType = RigidbodyType2D.Kinematic;
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         Color colour = sr.color;
         colour.a = 0.5f;
