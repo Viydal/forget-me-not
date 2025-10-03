@@ -55,26 +55,10 @@ public class SceneTransitionManager : MonoBehaviour
             StartCoroutine(TransitionToSceneCoroutine(sceneName));
     }
 
-    /// <summary>
-    /// Fade to a scene by build index
-    /// </summary>
-    public void FadeToScene(int buildIndex)
-    {
-        if (!isTransitioning)
-            StartCoroutine(TransitionToSceneCoroutine(buildIndex));
-    }
-
     private IEnumerator TransitionToSceneCoroutine(string sceneName)
     {
         yield return StartCoroutine(FadeOutCoroutine());
         yield return SceneManager.LoadSceneAsync(sceneName);
-        yield return StartCoroutine(FadeInCoroutine());
-    }
-
-    private IEnumerator TransitionToSceneCoroutine(int buildIndex)
-    {
-        yield return StartCoroutine(FadeOutCoroutine());
-        yield return SceneManager.LoadSceneAsync(buildIndex);
         yield return StartCoroutine(FadeInCoroutine());
     }
 
