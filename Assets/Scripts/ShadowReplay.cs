@@ -7,6 +7,8 @@ public class ShadowReplay : MonoBehaviour {
     [SerializeField] private Animator animator;
     [SerializeField] private Rigidbody2D body;
     [SerializeField] private PlayerRecorder record;
+    [SerializeField] private Ghost ghost;
+    [SerializeField] private SpriteRenderer sprite;
     private float timer = 0f;
     private int currentIndex = 0;
 
@@ -15,30 +17,44 @@ public class ShadowReplay : MonoBehaviour {
     private List<Frame> frames;
 
     void Start() {
+        sprite.enabled = false;
         body.bodyType = RigidbodyType2D.Kinematic;
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        Color colour = sr.color;
+        Color colour = sprite.color;
         colour.a = 0.5f;
-        sr.color = colour;
-        gameObject.GetComponent<Renderer>().enabled = false;
+        sprite.color = colour;
     }
 
     public void BeginReplay(List<Frame> recordingFrames) {
         if (record.recordings.Count == 0) {
-            gameObject.GetComponent<Renderer>().enabled = false;
-        } else {
-            gameObject.GetComponent<Renderer>().enabled = true;
+            sprite.enabled = false;
+            return;
         }
+
         frames = new List<Frame>(recordingFrames);
         currentIndex = 0;
+
+        Frame firstFrame = frames[0];
+
+        transform.position = firstFrame.position;
+        body.position = firstFrame.position;
+        
+        Flip(body, firstFrame.isFacingRight);
+        animator.SetBool("isRunning", firstFrame.isRunning);
+        animator.SetBool("isJumping", firstFrame.isJumping);
+
+        timer = 0f;
         beginReplay = true;
-        Debug.Log(frames.Count);
+        sprite.enabled = true;
+
+        currentIndex = 1;
     }
+
 
     // Update is called once per frame
     void Update() {
 
         if (!beginReplay) return;
+        animator.SetBool("isDead", false);
 
         if (currentIndex >= frames.Count) {
             beginReplay = false;
@@ -76,8 +92,12 @@ public class ShadowReplay : MonoBehaviour {
         }
 
         if (currentIndex >= frames.Count) {
+            ghost.StartFade();
             animator.SetBool("isRunning", false);
             animator.SetBool("isJumping", false);
+            animator.SetBool("isDead", true);
+            beginReplay = false;
+            return;
         }
     }
 

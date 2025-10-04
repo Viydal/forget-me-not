@@ -16,7 +16,7 @@ public class Movement : MonoBehaviour {
 
     public Transform startTransform;
 
-    public Vector2 intitalPosition;
+    public Vector2 inititalPosition;
 
     public bool isDead = false;
 
@@ -30,7 +30,7 @@ public class Movement : MonoBehaviour {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
         body.gravityScale = 6f;
-        intitalPosition = startTransform.position;
+        inititalPosition = startTransform.position;
     }
 
     // Update is called once per frame
@@ -58,7 +58,7 @@ public class Movement : MonoBehaviour {
         }
 
         if (isDead) {
-            body.position = intitalPosition;
+            body.position = inititalPosition;
             body.linearVelocity = Vector2.zero;
             isDead = !isDead;
         }

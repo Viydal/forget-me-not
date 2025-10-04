@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MoveObject : MonoBehaviour {
     [Header("Movement Settings")]
-    [SerializeField] private Vector3 moveOffset = new Vector3(0, 3f, 0); // How far to move from start
+    [SerializeField] private Vector3 moveOffset = new Vector3(13f, 0f, 0); // How far to move from start
     [SerializeField] private float moveSpeed = 2f;                        // Movement speed
     [SerializeField] private bool startOpen = false;                      // Start at target position?
 

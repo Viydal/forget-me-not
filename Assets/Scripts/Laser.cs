@@ -2,44 +2,54 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Laser : MonoBehaviour
-{
-    [SerializeField] private float defDistanceRay = 100f;
+public class Laser : MonoBehaviour {
+    [SerializeField] private float defDistanceRay = 20f;
+
+    [SerializeField] private string laserDirection;
+    
     public Transform LaserOrigin;
     public LineRenderer lineRenderer;
     Transform m_transform;
 
-    private void Awake()
-    {
+    private void Awake() {
         m_transform = GetComponent<Transform>();
     }
 
-    private void Update()
-    {
+    private void Update() {
         ShootLaser();
     }
 
-    void ShootLaser()
-    {
-        if (Physics2D.Raycast(m_transform.position, m_transform.right))
-        {
-            RaycastHit2D hit = Physics2D.Raycast(LaserOrigin.position, transform.right);
+    void ShootLaser() {
+        Vector2 origin = LaserOrigin.position;
+        Vector2 direction = Vector2.right;
+        if (laserDirection == "Right") {
+            direction = Vector2.right;
+        } else if (laserDirection == "Left") {
+            direction = Vector2.left;
+        } else if (laserDirection == "Up") {
+            direction = Vector2.up;
+        } else if (laserDirection == "Down") {
+            direction = Vector2.down;
+        } else {
+            Debug.Log("Invalid laser direction");
+        }
+        
+        RaycastHit2D hit = Physics2D.Raycast(origin, direction, defDistanceRay);
+
+        if (hit.collider != null) {
             Draw2DRay(LaserOrigin.position, hit.point);
-            if (hit.collider.CompareTag("Ghost"))
-            {
+
+            if (hit.collider.CompareTag("Ghost")) {
                 Ghost ghost = hit.collider.GetComponent<Ghost>();
                 ghost.StartFade(); // fade out ghost
             }
-        }
-        else
-        {
-            Draw2DRay(LaserOrigin.position, LaserOrigin.transform.right * defDistanceRay);
+        } else {
+            Draw2DRay(origin, origin + direction * defDistanceRay);
         }
     }
-    
-    void Draw2DRay(Vector2 startPos, Vector2 endPos)
-    {
-        lineRenderer.SetPosition(0, startPos);
-        lineRenderer.SetPosition(1, endPos);
+
+    void Draw2DRay(Vector2 startPos, Vector2 endPos) {
+        lineRenderer.SetPosition(0, new Vector3(startPos.x, startPos.y, 0));
+        lineRenderer.SetPosition(1, new Vector3(endPos.x, endPos.y, 0));
     }
 }
