@@ -24,7 +24,7 @@ public class Button_Floor : MonoBehaviour
 // Player steps on button
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player")) // only respond to player
+        if (other.CompareTag("Player")||other.CompareTag("Ghost")) // only respond to player
         {
             Debug.Log("Player stepped on button");
             pressCount++;
@@ -39,7 +39,7 @@ public class Button_Floor : MonoBehaviour
 //player steps off button
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player")||other.CompareTag("Ghost"))
         {
             pressCount--;
             if (pressCount <= 0)
