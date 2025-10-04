@@ -25,6 +25,7 @@ public class Movement : MonoBehaviour {
     [SerializeField] private LayerMask groundLayer;
 
     [SerializeField] private Animator animator;
+    private bool isWalkSoundPlaying = false;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -37,12 +38,21 @@ public class Movement : MonoBehaviour {
     void Update() {
         horizontal = Input.GetAxisRaw("Horizontal");
 
-        if (horizontal != 0) {
+        if (horizontal != 0 && IsGrounded()) {
             isRunning = true;
             animator.SetBool("isRunning", isRunning);
+            if (!isWalkSoundPlaying) {
+                AudioManager.instance.PlayLoopingSFX(AudioManager.instance.walk);
+                isWalkSoundPlaying = true;
+            }
+
         } else {
             isRunning = false;
             animator.SetBool("isRunning", isRunning);
+            if (isWalkSoundPlaying) {
+                AudioManager.instance.StopLoopingSFX();
+                isWalkSoundPlaying = false;
+            }
         }
 
         if (Input.GetKey(KeyCode.Space) && IsGrounded()) {
