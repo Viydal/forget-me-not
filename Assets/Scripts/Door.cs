@@ -11,6 +11,7 @@ public class Door : MonoBehaviour {
     private Vector3 closedPosition;
     private Vector3 openPosition;
     private bool isOpen = false;
+    private bool isMoving = false;
     private int activeCount = 0;
 
     private void Start() {
@@ -19,10 +20,18 @@ public class Door : MonoBehaviour {
     }
 
     public void Open() {
+        // if (isOpen || isMoving) return;
+
+        // AudioManager.instance.PlaySFX(AudioManager.instance.doorOpen);
+        isMoving = true;
         isOpen = true;
     }
 
     public void Close() {
+        // if (!isOpen) return;
+
+        // AudioManager.instance.PlaySFX(AudioManager.instance.doorClose);
+        isMoving = true;
         isOpen = false;
     }
 
@@ -41,5 +50,9 @@ public class Door : MonoBehaviour {
     private void Update() {
         Vector3 target = isOpen ? openPosition : closedPosition;
         transform.position = Vector3.Lerp(transform.position, target, Time.deltaTime * openSpeed);
+
+        if (Vector3.Distance(transform.position, target) < 0.1f) {
+            isMoving = false;
+        }
     }
 }

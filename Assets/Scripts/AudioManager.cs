@@ -12,6 +12,7 @@ public class AudioManager : MonoBehaviour {
     public AudioClip menuButtonHover;
     public AudioClip menuButtonSelect;
     public AudioClip death;
+    public AudioClip ghostDeath;
     public AudioClip walk;
     public AudioClip jump;
     public AudioClip land;
