@@ -8,12 +8,17 @@ public class GameManager : MonoBehaviour {
     public bool isPaused = false;
 
     public int soulCount = 0;
-    private void Awake() {
+    public bool firstLaserDeath = 0;
+    private void Awake()
+    {
         mainMenu = GameObject.Find("Main Menu");
-        if (Instance == null) {
+        if (Instance == null)
+        {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-        } else {
+        }
+        else
+        {
             Destroy(gameObject);
         }
     }

@@ -39,9 +39,15 @@ public class Laser : MonoBehaviour {
         if (hit.collider != null) {
             Draw2DRay(LaserOrigin.position, hit.point);
 
-            if (hit.collider.CompareTag("Ghost")) {
+            if (hit.collider.CompareTag("Ghost"))
+            {
                 Ghost ghost = hit.collider.GetComponent<Ghost>();
                 ghost.StartFade(); // fade out ghost
+                if (GameManager.Instance.firstLaserDeath)
+                {
+                    GameManager.Instance.firstLaserDeath = false;
+                    Debug.Log("First laser death");
+                }
             }
         } else {
             Draw2DRay(origin, origin + direction * defDistanceRay);
