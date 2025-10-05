@@ -1,9 +1,10 @@
 using UnityEngine;
-using UnityEngine.UI;   
+using UnityEngine.UI; 
+using TMPro;  
 
 public class PopUp : MonoBehaviour
 {
-    [SerializeField] Text popUpText;
+    [SerializeField] TMP_Text popUpText;
     public string text_value;
     void Start()
     {
