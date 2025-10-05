@@ -152,6 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Laser
   defDistanceRay: 40
   laserDirection: Down
+  popUpPrefab: {fileID: 0}
   LaserOrigin: {fileID: 1132598959}
   lineRenderer: {fileID: 19669853}
 --- !u!120 &19669853
