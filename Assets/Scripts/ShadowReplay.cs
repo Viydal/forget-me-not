@@ -52,6 +52,16 @@ public class ShadowReplay : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        if (GameManager.Instance.isPaused) {
+            body.linearVelocity = Vector2.zero;
+            AudioManager.instance.StopLoopingSFX();
+            body.bodyType = RigidbodyType2D.Kinematic;
+            animator.speed = 0f;
+            return;
+        } else {
+            animator.speed = 1f;
+            body.bodyType = RigidbodyType2D.Dynamic;
+        }
 
         if (!beginReplay) return;
         animator.SetBool("isDead", false);

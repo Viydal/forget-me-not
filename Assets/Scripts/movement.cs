@@ -42,8 +42,14 @@ public class Movement : MonoBehaviour {
         if (GameManager.Instance.isPaused) {
             body.linearVelocity = Vector2.zero;
             AudioManager.instance.StopLoopingSFX();
+            body.bodyType = RigidbodyType2D.Kinematic;
+            animator.speed = 0f;
             return;
+        } else {
+            animator.speed = 1f;
+            body.bodyType = RigidbodyType2D.Dynamic;
         }
+
 
         horizontal = Input.GetAxisRaw("Horizontal");
         jumpSoundTimer -= Time.deltaTime;
