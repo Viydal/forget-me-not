@@ -13,7 +13,7 @@ public class Soul : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Player") && entered == false) {
             entered = true;
-            Debug.Log("Player collected soul");
+            Debug.Log("Player collected soul.");
 
             AudioManager.instance.PlaySFX(AudioManager.instance.collectSoul);
             
