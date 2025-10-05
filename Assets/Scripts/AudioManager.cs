@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour {
     [SerializeField] AudioSource SFXSource;
     public float SFXVolume = 1;
     [SerializeField] AudioSource loopingSFXSource;
+    [SerializeField] AudioSource outroSource;
 
     [Header("Audio clip")]
     public AudioClip background;
@@ -25,6 +26,8 @@ public class AudioManager : MonoBehaviour {
     public AudioClip doorOpen;
     public AudioClip doorClose;
     public AudioClip collectSoul;
+    public AudioClip gameWin;
+    public AudioClip viydalSing;
 
 
     void Awake() {
@@ -36,11 +39,22 @@ public class AudioManager : MonoBehaviour {
             musicSource.Play();
 
             SetSFXVolume(SFXVolume);
+
+            outroSource.volume = 2f;
         } else {
             Destroy(gameObject);
         }
     }
+    public void PlayMusic(AudioClip clip) {
+        musicSource.PlayOneShot(clip);
+    }
 
+    public void PlayOutro(AudioClip clip) {
+        outroSource.PlayOneShot(clip);
+    }
+    public void StopMusic() {
+        musicSource.Stop();
+    }
     public void PlaySFX(AudioClip clip) {
         SFXSource.PlayOneShot(clip);
     }
