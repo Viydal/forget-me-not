@@ -46,8 +46,11 @@ public class AudioManager : MonoBehaviour {
             Destroy(gameObject);
         }
     }
-    public void PlayMusic(AudioClip clip) {
-        musicSource.PlayOneShot(clip);
+    public void PlayMusic(AudioClip clip)
+    {
+        musicSource.loop = true;
+        musicSource.clip = clip;
+        musicSource.Play();
     }
 
     public void PlayOutro(AudioClip clip) {
