@@ -39,6 +39,12 @@ public class Movement : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        if (GameManager.Instance.isPaused) {
+            body.linearVelocity = Vector2.zero;
+            AudioManager.instance.StopLoopingSFX();
+            return;
+        }
+
         horizontal = Input.GetAxisRaw("Horizontal");
         jumpSoundTimer -= Time.deltaTime;
 
@@ -59,7 +65,7 @@ public class Movement : MonoBehaviour {
             }
         }
 
-        if (Input.GetKey(KeyCode.Space) && IsGrounded()) {
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded()) {
             if (jumpSoundTimer <= 0f) {
                 AudioManager.instance.PlaySFX(AudioManager.instance.jump);
                 jumpSoundTimer = jumpSoundCooldown;
@@ -85,6 +91,9 @@ public class Movement : MonoBehaviour {
     }
 
     private void FixedUpdate() {
+        if (GameManager.Instance.isPaused) {
+            return;
+        }
         body.linearVelocity = new Vector2(horizontal * speed, body.linearVelocity.y);
     }
 
