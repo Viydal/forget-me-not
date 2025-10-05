@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class Laser : MonoBehaviour {
     [SerializeField] private float defDistanceRay = 20f;
+    private float initialDistanceRay;
 
     [SerializeField] private string laserDirection;
 
@@ -14,6 +15,7 @@ public class Laser : MonoBehaviour {
     Transform m_transform;
 
     private void Awake() {
+        initialDistanceRay = defDistanceRay;
         m_transform = GetComponent<Transform>();
     }
 
@@ -56,6 +58,14 @@ public class Laser : MonoBehaviour {
         } else {
             Draw2DRay(origin, origin + direction * defDistanceRay);
         }
+    }
+
+    public void DeactivateLaser() {
+        defDistanceRay = 0;
+    }
+
+    public void ActivateLaser() {
+        defDistanceRay = initialDistanceRay;
     }
 
     void Draw2DRay(Vector2 startPos, Vector2 endPos) {

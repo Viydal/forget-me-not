@@ -28,6 +28,7 @@ public class AudioManager : MonoBehaviour {
     public AudioClip collectSoul;
     public AudioClip gameWin;
     public AudioClip viydalSing;
+    public AudioClip clap;
 
 
     void Awake() {

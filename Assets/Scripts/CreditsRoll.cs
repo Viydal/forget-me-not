@@ -30,10 +30,10 @@ public class CreditsScroll : MonoBehaviour {
         credits += "Whtbrd\n";
         credits += "Viydal\n";
         credits += "Longy\n";
+        credits += "Asad\n";
         credits += "Longy's Mum\n\n";
         credits += "Special Thanks\n";
-        credits += "Family and friends for their support blah blah blah\n";
-        credits += "blah blah\n\n";
+        credits += "Thank you to ourselves for pushing through\n the cold nights and hot days, without\n you this game wouldn't be here...\n\n";
         credits += "Thank you for playing\n\n";
         credits += "Made with love\n";
         credits += "Using Unity\n\n\n";

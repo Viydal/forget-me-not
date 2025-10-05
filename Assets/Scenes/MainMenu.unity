@@ -599,7 +599,6 @@ MonoBehaviour:
   firstLaserDeath: 1
   gameWin: 0
   musicPlaying: 0
-  roryDoneTalking: 0
 --- !u!4 &290462474
 Transform:
   m_ObjectHideFlags: 0
@@ -3542,6 +3541,7 @@ MonoBehaviour:
   collectSoul: {fileID: 8300000, guid: ceb5a6136a85bb14b93f219bdc30758d, type: 3}
   gameWin: {fileID: 8300000, guid: 04229e9a063ea934baa7da3407bdc6b3, type: 3}
   viydalSing: {fileID: 8300000, guid: e5d8cdd645abf424f8ffdd4b1ef84300, type: 3}
+  clap: {fileID: 8300000, guid: b75afc54840d939439c41f64480aa7ee, type: 3}
 --- !u!4 &1727999364
 Transform:
   m_ObjectHideFlags: 0
