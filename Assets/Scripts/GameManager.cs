@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour {
     public bool isPaused = false;
     public int soulCount = 0;
     public bool firstLaserDeath = true;
+    public bool firstDoorInteraction = true;
+    public bool level2Death = true;
     public bool gameWin = false;
     public bool musicPlaying = false;
 
