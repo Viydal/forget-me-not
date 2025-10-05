@@ -38,6 +38,11 @@ public class Door : MonoBehaviour {
         Close();
     }
 
+    public void SpecialButton() {
+        AudioManager.instance.PlaySFX(AudioManager.instance.clap);
+        Open();
+    }
+
     private void Update() {
         Vector3 target = isOpen ? openPosition : closedPosition;
         transform.position = Vector3.Lerp(transform.position, target, Time.deltaTime * openSpeed);
