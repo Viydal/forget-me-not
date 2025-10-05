@@ -6,6 +6,8 @@ public class Laser : MonoBehaviour {
     [SerializeField] private float defDistanceRay = 20f;
 
     [SerializeField] private string laserDirection;
+
+    [SerializeField] private GameObject popUpPrefab;
     
     public Transform LaserOrigin;
     public LineRenderer lineRenderer;
@@ -47,6 +49,8 @@ public class Laser : MonoBehaviour {
                 {
                     GameManager.Instance.firstLaserDeath = false;
                     Debug.Log("First laser death");
+                    GameObject popUpObject = Instantiate(popUpPrefab, hit.collider.transform.position + new Vector3(0, 2, 0), new Quaternion());
+                    popUpObject.GetComponent<PopUp>().text_value = "Ghosts can't touch the light.";
                 }
             }
         } else {
