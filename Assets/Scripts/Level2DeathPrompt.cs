@@ -7,9 +7,9 @@ public class Level2DeathPrompt : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (GameManager.Instance.firstDoorInteraction)
+            if (GameManager.Instance.level2Death)
             {
-                GameManager.Instance.firstDoorInteraction = false;
+                GameManager.Instance.level2Death = false;
                 GameObject popUpObject = Instantiate(popUpPrefab, new Vector3(0, 0, 0), new Quaternion());
                 popUpObject.GetComponent<PopUp>().text_value = "Press R to Respawn.";
             }
