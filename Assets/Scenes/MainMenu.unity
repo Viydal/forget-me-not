@@ -596,6 +596,7 @@ MonoBehaviour:
   mainMenu: {fileID: 0}
   isPaused: 0
   soulCount: 0
+  firstLaserDeath: 1
 --- !u!4 &290462474
 Transform:
   m_ObjectHideFlags: 0
