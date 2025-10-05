@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour {
     public bool isPaused = false;
 
     public int soulCount = 0;
-    public bool firstLaserDeath = 0;
+    public bool firstLaserDeath = false;
     private void Awake()
     {
         mainMenu = GameObject.Find("Main Menu");
