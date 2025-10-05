@@ -9,8 +9,11 @@ public class GameManager : MonoBehaviour {
     public bool isPaused = false;
     public int soulCount = 0;
     public bool firstLaserDeath = true;
-    private void Awake()
-    {
+    public bool gameWin = false;
+    public bool musicPlaying = false;
+
+
+    private void Awake() {
         mainMenu = GameObject.Find("Main Menu");
         if (Instance == null) {
             Instance = this;
@@ -21,22 +24,26 @@ public class GameManager : MonoBehaviour {
     }
 
     private void Update() {
+        if (gameWin && !musicPlaying) {
+            AudioManager.instance.PlayOutro(AudioManager.instance.gameWin);
+            musicPlaying = true;
+        }
         if (Input.GetKeyDown(KeyCode.Escape) && mainMenu == null) {
-            Debug.Log("Options panel active");
-            if (!isPaused) {
-                optionsPanel.SetActive(true);
-                isPaused = true;
-                if (mainMenu != null) {
-                    mainMenu.SetActive(false);
-                }
-            } else {
-                optionsPanel.SetActive(false);
-                isPaused = false;
-                if (mainMenu != null) {
-                    mainMenu.SetActive(true);
+                Debug.Log("Options panel active");
+                if (!isPaused) {
+                    optionsPanel.SetActive(true);
+                    isPaused = true;
+                    if (mainMenu != null) {
+                        mainMenu.SetActive(false);
+                    }
+                } else {
+                    optionsPanel.SetActive(false);
+                    isPaused = false;
+                    if (mainMenu != null) {
+                        mainMenu.SetActive(true);
+                    }
                 }
             }
-        }
 
         if (Input.GetKeyDown(KeyCode.L)) {
             NextLevel();
