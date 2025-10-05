@@ -2441,6 +2441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NextScene
   nextSceneName: Level3
+  popUpPrefab: {fileID: 0}
 --- !u!61 &172358294
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -25803,6 +25804,73 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1515342198
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1515342201}
+  - component: {fileID: 1515342200}
+  - component: {fileID: 1515342199}
+  m_Layer: 0
+  m_Name: KYSCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1515342199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515342198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d33ddbdedee37ac4780f2c4d43ef42b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Level2DeathPrompt
+  popUpPrefab: {fileID: 462859205740591638, guid: 5cc05aecee202324995a83566ca2ab95, type: 3}
+--- !u!65 &1515342200
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515342198}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 8.094486, y: 7.8641453, z: 1}
+  m_Center: {x: -1.151701, y: -2.326439, z: 0}
+--- !u!4 &1515342201
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515342198}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -26.75058, y: 5.24292, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1671803025
 GameObject:
   m_ObjectHideFlags: 0
@@ -26282,3 +26350,4 @@ SceneRoots:
   - {fileID: 1818969702}
   - {fileID: 1972815302}
   - {fileID: 722186814}
+  - {fileID: 1515342201}
