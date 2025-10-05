@@ -3523,7 +3523,7 @@ MonoBehaviour:
   background: {fileID: 8300000, guid: a44733964f1ab80479853139a7e86e82, type: 3}
   menuButtonHover: {fileID: 8300000, guid: 6b26c9ce6a0b4e1439300c71f8c06d0f, type: 3}
   menuButtonSelect: {fileID: 8300000, guid: 4371d8d4329485d4cbd5456e517a361e, type: 3}
-  death: {fileID: 8300000, guid: b3b03456565c3134197b119562d21877, type: 3}
+  death: {fileID: 8300000, guid: 345803b425ab6e24dacc721c3668b44d, type: 3}
   ghostDeath: {fileID: 8300000, guid: b3b03456565c3134197b119562d21877, type: 3}
   walk: {fileID: 8300000, guid: 43395e445de131c48a92eb45cc732a79, type: 3}
   jump: {fileID: 8300000, guid: ecf6b76eada1d594ba480c525ee7301e, type: 3}
@@ -3851,8 +3851,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 911339468}
-        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+      - m_Target: {fileID: 290462473}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:

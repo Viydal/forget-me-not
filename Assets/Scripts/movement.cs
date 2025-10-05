@@ -6,6 +6,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour {
+    [SerializeField] private PlayerRecorder record;
+    [SerializeField] private ShadowReplay shadow;
 
     private float horizontal;
     private float speed = 10f;
@@ -50,6 +52,14 @@ public class Movement : MonoBehaviour {
             body.bodyType = RigidbodyType2D.Dynamic;
         }
 
+        if (body.position.y < -50) {
+            record.StopRecording();
+            shadow.BeginReplay(record.GetFrames());
+            record.StartRecording();
+            isDead = true;
+            Debug.Log("Player fell off the map");
+        }
+
 
         horizontal = Input.GetAxisRaw("Horizontal");
         jumpSoundTimer -= Time.deltaTime;
@@ -90,6 +100,7 @@ public class Movement : MonoBehaviour {
         if (isDead) {
             body.position = inititalPosition;
             body.linearVelocity = Vector2.zero;
+            AudioManager.instance.PlaySFX(AudioManager.instance.death);
             isDead = !isDead;
         }
 

@@ -41,4 +41,8 @@ public class GameManager : MonoBehaviour {
         optionsPanel.SetActive(false);
         isPaused = false;
     }
+
+    public void QuitGame() {
+        Application.Quit();
+    }
 }

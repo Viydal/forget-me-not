@@ -26178,6 +26178,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f803ce7b6aca4404fab48f831423bfb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  record: {fileID: 1818875733}
+  shadow: {fileID: 1708534520}
   isFacingRight: 1
   isJumping: 0
   isRunning: 0
