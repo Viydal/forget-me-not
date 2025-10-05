@@ -3,6 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour {
     public void PlayGame() {
-        SceneManager.LoadSceneAsync("Level1");
+        SceneManager.LoadSceneAsync("Level0");
     }
 }
