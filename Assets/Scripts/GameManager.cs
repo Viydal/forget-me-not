@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
     public static GameManager Instance;
@@ -6,19 +7,15 @@ public class GameManager : MonoBehaviour {
     public GameObject soundPanel;
     public GameObject mainMenu;
     public bool isPaused = false;
-
     public int soulCount = 0;
     public bool firstLaserDeath = true;
     private void Awake()
     {
         mainMenu = GameObject.Find("Main Menu");
-        if (Instance == null)
-        {
+        if (Instance == null) {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
+        } else {
             Destroy(gameObject);
         }
     }
@@ -40,6 +37,14 @@ public class GameManager : MonoBehaviour {
                 }
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.L)) {
+            NextLevel();
+        }
+
+        if (Input.GetKeyDown(KeyCode.K)) {
+            PreviousLevel();
+        }
     }
 
     public void UnPause() {
@@ -49,5 +54,15 @@ public class GameManager : MonoBehaviour {
 
     public void QuitGame() {
         Application.Quit();
+    }
+
+    public void NextLevel() {
+        int nextLevelIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        SceneManager.LoadScene(nextLevelIndex);
+    }
+
+    public void PreviousLevel() {
+        int nextLevelIndex = SceneManager.GetActiveScene().buildIndex - 1;
+        SceneManager.LoadScene(nextLevelIndex);
     }
 }
