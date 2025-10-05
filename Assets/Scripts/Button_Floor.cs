@@ -1,12 +1,11 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Button_Floor : MonoBehaviour
-{
+public class Button_Floor : MonoBehaviour {
     [Header("Button Parameters")]
     [SerializeField] private Transform buttonTop;   // assign the top part of button
-    [SerializeField] private Vector3 pressedOffset = new Vector3(0, -0.1f, 0); 
-    [SerializeField] private float pressSpeed = 5f; 
+    [SerializeField] private Vector3 pressedOffset = new Vector3(0, -0.1f, 0);
+    [SerializeField] private float pressSpeed = 5f;
 
     [SerializeField] private UnityEvent onPressed;   // event you can hook into
     [SerializeField] private UnityEvent onReleased;  // optional release event
@@ -15,43 +14,37 @@ public class Button_Floor : MonoBehaviour
     private bool isPressed = false;
     private int pressCount = 0; // track how many objects are on it
 
-    private void Start()
-    {
+    private void Start() {
         if (buttonTop != null)
             initialPosition = buttonTop.localPosition;
     }
 
-// Player steps on button
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player")||other.CompareTag("Ghost")) // only respond to player
-        {
+    // Player steps on button
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.CompareTag("Player") || other.CompareTag("Ghost")) {
+            AudioManager.instance.PlaySFX(AudioManager.instance.buttonActive);
             Debug.Log("Player stepped on button");
             pressCount++;
-            if (!isPressed)
-            {
+            if (!isPressed) {
                 isPressed = true;
                 onPressed.Invoke();
             }
         }
     }
 
-//player steps off button
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player")||other.CompareTag("Ghost"))
-        {
+    //player steps off button
+    private void OnTriggerExit2D(Collider2D other) {
+        if (other.CompareTag("Player") || other.CompareTag("Ghost")) {
+            AudioManager.instance.PlaySFX(AudioManager.instance.buttonInactive);
             pressCount--;
-            if (pressCount <= 0)
-            {
+            if (pressCount <= 0) {
                 isPressed = false;
                 onReleased.Invoke();
             }
         }
     }
 
-    private void Update()
-    {
+    private void Update() {
         if (buttonTop == null) return;
 
         Vector3 targetPos = isPressed ? initialPosition + pressedOffset : initialPosition;

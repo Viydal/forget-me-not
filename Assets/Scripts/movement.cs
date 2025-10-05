@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -26,6 +27,8 @@ public class Movement : MonoBehaviour {
 
     [SerializeField] private Animator animator;
     private bool isWalkSoundPlaying = false;
+    private float jumpSoundCooldown = 0.2f;
+    private float jumpSoundTimer = 0f;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -37,6 +40,7 @@ public class Movement : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         horizontal = Input.GetAxisRaw("Horizontal");
+        jumpSoundTimer -= Time.deltaTime;
 
         if (horizontal != 0 && IsGrounded()) {
             isRunning = true;
@@ -56,6 +60,10 @@ public class Movement : MonoBehaviour {
         }
 
         if (Input.GetKey(KeyCode.Space) && IsGrounded()) {
+            if (jumpSoundTimer <= 0f) {
+                AudioManager.instance.PlaySFX(AudioManager.instance.jump);
+                jumpSoundTimer = jumpSoundCooldown;
+            }
             body.linearVelocity = new Vector2(body.linearVelocity.x, jumpingPower);
         }
 

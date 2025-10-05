@@ -4,7 +4,9 @@ public class AudioManager : MonoBehaviour {
     [Header("Audio source")]
     public static AudioManager instance;
     [SerializeField] AudioSource musicSource;
+    public float musicVolume = 0.04f;
     [SerializeField] AudioSource SFXSource;
+    public float SFXVolume = 1;
     [SerializeField] AudioSource loopingSFXSource;
 
     [Header("Audio clip")]
@@ -12,6 +14,7 @@ public class AudioManager : MonoBehaviour {
     public AudioClip menuButtonHover;
     public AudioClip menuButtonSelect;
     public AudioClip death;
+    public AudioClip ghostDeath;
     public AudioClip walk;
     public AudioClip jump;
     public AudioClip land;
@@ -29,8 +32,10 @@ public class AudioManager : MonoBehaviour {
             instance = this;
             DontDestroyOnLoad(gameObject);
             musicSource.clip = background;
-            musicSource.volume = 0.05f;
+            SetMusicVolume(musicVolume);
             musicSource.Play();
+
+            SetSFXVolume(SFXVolume);
         } else {
             Destroy(gameObject);
         }
@@ -55,5 +60,15 @@ public class AudioManager : MonoBehaviour {
     public void StopLoopingSFX() {
         loopingSFXSource.Stop();
         loopingSFXSource.clip = null;
+    }
+
+    public void SetSFXVolume(float volume) {
+        Debug.Log("SFX volume changed to: " + volume);
+        SFXSource.volume = volume;
+    }
+
+    public void SetMusicVolume(float volume) {
+        Debug.Log("Music volume changed to: " + volume);
+        musicSource.volume = volume;
     }
 }

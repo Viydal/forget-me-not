@@ -92,6 +92,7 @@ public class ShadowReplay : MonoBehaviour {
         }
 
         if (currentIndex >= frames.Count) {
+            AudioManager.instance.PlaySFX(AudioManager.instance.ghostDeath);
             ghost.StartFade();
             animator.SetBool("isRunning", false);
             animator.SetBool("isJumping", false);
