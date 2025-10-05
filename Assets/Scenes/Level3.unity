@@ -20697,6 +20697,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NextScene
   nextSceneName: Level4
+  popUpPrefab: {fileID: 0}
 --- !u!61 &787402171
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21021,7 +21022,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b678b628bbbd0174c9eae396fa2436f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoveObject
-  moveOffset: {x: 13, y: 0, z: 0}
+  moveOffset: {x: 0, y: 20, z: 0}
   moveSpeed: 2
   startOpen: 0
 --- !u!61 &1129426472
@@ -21137,8 +21138,8 @@ Transform:
   m_GameObject: {fileID: 1129426470}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -32.76, y: -1.48, z: 0}
-  m_LocalScale: {x: 2.078453, y: 0.77, z: 1}
+  m_LocalPosition: {x: -26.34, y: -21.48, z: 0}
+  m_LocalScale: {x: 14.649197, y: 0.77, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
