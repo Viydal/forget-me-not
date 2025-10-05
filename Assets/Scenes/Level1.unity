@@ -26183,6 +26183,7 @@ MonoBehaviour:
   isFacingRight: 1
   isJumping: 0
   isRunning: 0
+  hitboxSize: 0.5
   startTransform: {fileID: 1818875739}
   inititalPosition: {x: 0, y: 0}
   isDead: 0

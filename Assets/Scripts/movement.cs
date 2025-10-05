@@ -17,6 +17,8 @@ public class Movement : MonoBehaviour {
     public bool isJumping = false;
     public bool isRunning = false;
 
+    public float hitboxSize = 0.2f;
+
     public Transform startTransform;
 
     public Vector2 inititalPosition;
@@ -29,7 +31,7 @@ public class Movement : MonoBehaviour {
 
     [SerializeField] private Animator animator;
     private bool isWalkSoundPlaying = false;
-    private float jumpSoundCooldown = 0.2f;
+    private float jumpSoundCooldown = 0.5f;
     private float jumpSoundTimer = 0f;
 
 
@@ -41,7 +43,7 @@ public class Movement : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (GameManager.Instance.isPaused) {
+        if (GameManager.Instance != null && GameManager.Instance.isPaused) {
             body.linearVelocity = Vector2.zero;
             AudioManager.instance.StopLoopingSFX();
             body.bodyType = RigidbodyType2D.Kinematic;
@@ -115,7 +117,7 @@ public class Movement : MonoBehaviour {
     }
 
     public bool IsGrounded() {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+        return Physics2D.OverlapCircle(groundCheck.position, hitboxSize, groundLayer);
     }
 
     public void Flip() {
