@@ -47,13 +47,13 @@ public class GameManager : MonoBehaviour {
                 }
             }
 
-        if (Input.GetKeyDown(KeyCode.L)) {
-            NextLevel();
-        }
+        // if (Input.GetKeyDown(KeyCode.L)) {
+        //     NextLevel();
+        // }
 
-        if (Input.GetKeyDown(KeyCode.K)) {
-            PreviousLevel();
-        }
+        // if (Input.GetKeyDown(KeyCode.K)) {
+        //     PreviousLevel();
+        // }
     }
 
     public void UnPause() {

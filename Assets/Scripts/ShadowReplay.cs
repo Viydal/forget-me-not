@@ -37,7 +37,7 @@ public class ShadowReplay : MonoBehaviour {
 
         transform.position = firstFrame.position;
         body.position = firstFrame.position;
-        
+
         Flip(body, firstFrame.isFacingRight);
         animator.SetBool("isRunning", firstFrame.isRunning);
         animator.SetBool("isJumping", firstFrame.isJumping);
@@ -50,7 +50,6 @@ public class ShadowReplay : MonoBehaviour {
     }
 
 
-    // Update is called once per frame
     void Update() {
         if (GameManager.Instance.isPaused) {
             body.linearVelocity = Vector2.zero;
@@ -71,37 +70,13 @@ public class ShadowReplay : MonoBehaviour {
             return;
         }
 
-        // Fetch frames dynamically if needed
         if (frames == null || frames.Count == 0) {
             frames = record.GetFrames();
             currentIndex = 0;
             if (frames == null || frames.Count == 0) return;
         }
 
-        // Safety check
-        if (currentIndex >= frames.Count) {
-            currentIndex = 0; // loop replay
-        }
-        // Debug.Log("frame count: " + frames.Count);
-        float recordInterval = record.recordInterval;
-
-        timer += Time.deltaTime;
-        if (timer >= recordInterval) {
-            Frame frame = frames[currentIndex];
-
-            bool isFacingRight = frame.isFacingRight;
-            Flip(body, isFacingRight);
-
-            body.MovePosition(frame.position);
-
-            animator.SetBool("isRunning", frame.isRunning);
-            animator.SetBool("isJumping", frame.isJumping);
-
-            currentIndex++;
-            timer = 0f;
-        }
-
-        if (currentIndex >= frames.Count) {
+        if (currentIndex >= frames.Count - 1) {
             AudioManager.instance.PlaySFX(AudioManager.instance.ghostDeath);
             ghost.StartFade();
             animator.SetBool("isRunning", false);
@@ -109,6 +84,27 @@ public class ShadowReplay : MonoBehaviour {
             animator.SetBool("isDead", true);
             beginReplay = false;
             return;
+        }
+
+        float recordInterval = record.recordInterval;
+
+        Frame currentFrame = frames[currentIndex];
+        Frame nextFrame = frames[currentIndex + 1];
+
+        float t = timer / recordInterval;
+
+        Vector2 smoothPosition = Vector2.Lerp(currentFrame.position, nextFrame.position, t);
+        body.MovePosition(smoothPosition);
+
+        animator.SetBool("isRunning", currentFrame.isRunning);
+        animator.SetBool("isJumping", currentFrame.isJumping);
+        Flip(body, currentFrame.isFacingRight);
+
+        timer += Time.deltaTime;
+
+        if (timer >= recordInterval) {
+            currentIndex++;
+            timer = 0f;
         }
     }
 
