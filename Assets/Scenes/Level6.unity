@@ -1484,9 +1484,9 @@ CompositeCollider2D:
         Y: 169838720
     - - X: 150161280
         Y: 160161280
-      - X: 79838712
+      - X: 89838712
         Y: 160161280
-      - X: 79838712
+      - X: 89838712
         Y: 139838720
       - X: 150161280
         Y: 139838720
@@ -1542,8 +1542,8 @@ CompositeCollider2D:
       - {x: -0.0160997, y: 16.983871}
     - - {x: 15.016099, y: 13.983872}
       - {x: 15.016099, y: 16.016129}
-      - {x: 7.9838715, y: 16.0161}
-      - {x: 7.983901, y: 13.983872}
+      - {x: 8.983871, y: 16.0161}
+      - {x: 8.983901, y: 13.983872}
     - - {x: -9.983901, y: 13.983872}
       - {x: -9.983901, y: 16.016129}
       - {x: -16.016129, y: 16.0161}
@@ -4603,21 +4603,11 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: 8, y: 14, z: 0}
+  - first: {x: 9, y: 14, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 3
       m_TileSpriteIndex: 20
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 9, y: 14, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 11
-      m_TileSpriteIndex: 11
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -4733,21 +4723,11 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: 8, y: 15, z: 0}
+  - first: {x: 9, y: 15, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 6
       m_TileSpriteIndex: 17
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 9, y: 15, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 4
-      m_TileSpriteIndex: 4
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -5173,7 +5153,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: c0bd081f1ad17ff4fb98127fe8f84545, type: 2}
   - m_RefCount: 5
     m_Data: {fileID: 11400000, guid: a6bf1c7c8cdf7754e888dc23c90af301, type: 2}
-  - m_RefCount: 44
+  - m_RefCount: 43
     m_Data: {fileID: 11400000, guid: 7d2f214c90e31e847a3a70958ceb65fe, type: 2}
   - m_RefCount: 81
     m_Data: {fileID: 11400000, guid: 7b6d6f8792340b74fa84d8b2eefa55bc, type: 2}
@@ -5187,7 +5167,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 478cf1b2cbe5ded4d96d7047d14d957f, type: 2}
   - m_RefCount: 44
     m_Data: {fileID: 11400000, guid: 9a0d8c8170155ca4288d829eb98d8af0, type: 2}
-  - m_RefCount: 27
+  - m_RefCount: 26
     m_Data: {fileID: 11400000, guid: 462ab775c5e7da7419c3cb2603ec007c, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 28401649a8760484c92b94d7ffcd4e16, type: 2}
@@ -5220,7 +5200,7 @@ Tilemap:
     m_Data: {fileID: 1558863431, guid: 8ea1a01b83ea8804792d6780d18b2d08, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 44
+  - m_RefCount: 43
     m_Data: {fileID: -658011755, guid: 8ea1a01b83ea8804792d6780d18b2d08, type: 3}
   - m_RefCount: 81
     m_Data: {fileID: -305885200, guid: 8ea1a01b83ea8804792d6780d18b2d08, type: 3}
@@ -5234,7 +5214,7 @@ Tilemap:
     m_Data: {fileID: -1228741347, guid: 8ea1a01b83ea8804792d6780d18b2d08, type: 3}
   - m_RefCount: 44
     m_Data: {fileID: -1874058464, guid: 8ea1a01b83ea8804792d6780d18b2d08, type: 3}
-  - m_RefCount: 27
+  - m_RefCount: 26
     m_Data: {fileID: -1175434053, guid: 8ea1a01b83ea8804792d6780d18b2d08, type: 3}
   - m_RefCount: 10
     m_Data: {fileID: -963807450, guid: 8ea1a01b83ea8804792d6780d18b2d08, type: 3}
@@ -5259,7 +5239,7 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: -77197527, guid: 8ea1a01b83ea8804792d6780d18b2d08, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 347
+  - m_RefCount: 345
     m_Data:
       e00: 1
       e01: 0
@@ -5278,7 +5258,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 347
+  - m_RefCount: 345
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -5335,6 +5315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NextScene
   nextSceneName: Level7
+  popUpPrefab: {fileID: 0}
 --- !u!61 &172358294
 BoxCollider2D:
   m_ObjectHideFlags: 0
